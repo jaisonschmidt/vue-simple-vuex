@@ -1,7 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersist from 'vuex-persist'
 
 Vue.use(Vuex)
+
+const vuexPersist = new VuexPersist({
+    key: 'my-app',
+    storage: window.localStorage
+})
 
 export const store = new Vuex.Store({
     state: {
@@ -21,6 +27,7 @@ export const store = new Vuex.Store({
         counter (state) {
             return state.count
         }
-    }
+    },
+    plugins: [vuexPersist.plugin]
 })
 
